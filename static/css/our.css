@@ -1,0 +1,121 @@
+/* for navbar */
+/*4- logo animation*/
+
+@keyframes logoA {
+  from {color: black;}
+  to {color: green;}
+}
+.logoQA:hover {
+  color:green;
+  animation-name: logoA;
+  animation-duration: 1.5s;
+}
+
+/* 1-navicon */
+.navour_icon{
+  font-size: 40px;
+  font-style: normal;
+}
+/* 2-link */
+ul li[class*="textS"]{
+  font-size: 17px;
+}
+.linkColor{
+  color:rgb(60, 255, 1)!important;
+
+}
+.linkColorH:hover{
+  border-left:2px solid green;
+  border-right:2px solid green;
+  border-radius: 10%;
+}
+
+/* 3- alphan in navbar background using scroll */
+.handlerScroll{
+  background-color: #212529b5!important;
+}
+
+        
+/*-------------- endfor navbar  ---------------*/
+
+
+
+/* for future proioty in index */
+/*1-title future piorioty*/
+    .titleFA{
+      position: relative;
+      border-bottom:4px solid green;
+      width: 0px;
+      color: transparent;
+      
+  }
+  /*2-future buy back img*/
+  .futureBuy{
+      position:relative;
+      color:black;
+      background-repeat: no-repeat;  
+      background-size: cover;
+      text-align: center;
+
+  }
+/*-------------- endfor Future pioriorty  ---------------*/
+
+/* EXTRA */
+text {
+  font-size: 33px;
+  stroke-linejoin: round;
+  text-anchor: middle;
+  fill: black;
+  stroke: darkgreen;
+  stroke-width: 6px;
+  paint-order: stroke;
+}
+/*-------------- endfor extra  ---------------*/
+
+
+
+/* for search engien */
+.mybtn{
+  border: 2px solid rgba(0, 100, 0, 0.885);
+  font-size: medium;
+  background-color: white;
+  border-radius: 10px!important;
+  color: white;
+  font-weight: bolder;
+  font-style: italic;
+}
+.SearchIamge{
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size:cover;
+  height:650px;
+  padding-top:150px ;
+}
+.forhover:hover{
+  background-color:  rgb(36, 45, 32)!important;
+  border-color: black!important;
+  color: white!important;
+}    
+
+.forhover{
+  text-indent: 5px;
+  border: 2px solid rgba(0, 100, 0, 0.832);
+  background-color: black;
+  color: darkgreen!important;
+  font-weight: bolder;
+  font-style: italic;
+  font-size:20px;
+  border-radius: 10px!important;
+  position: relative;
+  right: 2px ;
+}
+
+/*-------------- endfor search engen  ---------------*/
+
+
+/* font ... etc */
+a{
+  text-decoration: none!important;
+}
+/*-------------- endfor allpage  ---------------*/
+
