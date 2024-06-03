@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  {% if isvarifaied %}
+  <style>
+    .sidebar{
+      height: 100%;
+    }
+  </style>
+  <!-- if user loged in -->
+  {%  if request.user.is_authenticated  %}
+  <!-- sidebar -->
+    <div class="sidebar  " style="background-color:#2f6d1f;">
+        <a class="getIneer
+        {% if  request.path == '/account/profile' %}
+        active
+        {% endif %}
+        " href="{% url 'profile' %}"><svg style="margin-bottom: 3px;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg> Info &Static</a>
+        <a class="  
+        {% if  request.path == '/account/profile/sell' %}
+        active
+        {% endif %}" href="{% url 'sellProfile' %}"><svg style="margin-bottom:3px ;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg> Add Proerities</a>
+
+        <a class="  
+        {% if  request.path == '/account/profile/edit' %}
+        active
+        {% endif %}" href="{% url 'edit' %}">      <svg style="margin-bottom:3px ;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg> Edit Profile
+        </a>
+
+
+  
+
+
+
+        <a class="
+        {% if  request.path == '/account/profile/proerities' %}
+        active
+        {% endif %}" href="{% url 'proerities' %}"><svg style="margin-bottom:3px ;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+          <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+        </svg> Your Proerities</a>
+
+        <a class="
+        {% if  request.path == '/account/profile/proerities/proeritiesMap' %}
+        active
+        {% endif %}" href="{% url 'proeritiesMap' %}"> 
+        <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom:3px ;" width="20" height="20" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+        </svg> Proerities Map</a>
+        {% if request.user.is_superuser %}
+        <a class="
+        {% if  request.path == '/account/profile/proerities/proeritiesReq' %}
+        active
+        {% endif %}" href="{% url 'proeritiesReq' %}"> 
+        <svg xmlns="http://www.w3.org/2000/svg"style="margin-bottom:3px ;" width="20" height="20" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
+          <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+        </svg> Proerities Req</a>
+        {% endif %}
+        <a  data-check-type="Logout" onclick="check(this);" onmouseover="this.style.cursor='pointer';"  style=" background-color: rgb(228, 92, 51);">
+          <svg style="margin-bottom: 3px;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg> Logout</a>
+
+         
+         
+    </div>
+    <!-- conterner profile -->
+    <div class="content" style="background-color:#76b852 ;">
+      {% block profile %}
+      <div style="width:100% ; height:540px ;  display: flex; align-items: center; justify-content: center; padding-bottom: 100px;">
+      <img class="rounded mx-1" src="{% static 'img/maintenance.gif' %}" style="border: 3px solid black;" width="200" height="150" alt="">
+    </div>
+      {% endblock %}
+    </div> 
+<!-- if not loged in -->
+  {%  else %}
+  <div style="width:100% ; height:450px ;  display: flex; align-items: center; justify-content: center; padding-bottom: 100px;">
+    You Must Login Do You Want To  <a href="{% url 'login' %} " style="color: white; margin-left: 2px;"> Login</a> 
+ </div>   
+  {% endif %}
+
+  {% else %}
+
+<div class="container">
+  {% include 'partion/messages.html' %}
+
+  <div class="row py-5 my-5">
+    <h1 class="text-center">Varifay Account</h1>
+    <p class="text-center">click <span style="color:red">Send</span> to send code to your email {{request.user.email}} </p>
+    <form class=" mx-5 " action="" method="post">{% csrf_token %}
+        <input class="col-md-7 col-ms-6 col-6  py-1 rounded" type="text" id="" name="mess" placeholder="Code">
+        <button class="col-md-2 col-sm-2 col-2 btn btn-success" name="messok" type="submit">submit</button>
+         <button class="col-md-2 col-sm-2 col-2 btn btn-danger" name="messsend" type="submit">Send</button> 
+        </form>
+   </div>
+  </div>
+</div>
+
+  {% endif %}
+{% endblock %}

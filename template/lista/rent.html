@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .formove{
+        background-color: aqua;
+        height: 100px;
+        width: 200px;
+        transform:translate(0px,0px) ;
+        position: relative;
+        z-index: 6;
+        
+    }
+    .asdsa{
+        position:absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    
+    .hihihi{
+        text-align: center;
+        margin: 0px;
+    
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        color:black;
+        width: 80px;
+        height: 80px;
+        top: 5px;
+        left: 5px;
+        transform:translate(0px,0px) ;
+       
+        
+    }
+    .hiss{
+        position:absolute ;
+        width: 80px;
+        height: 80px;
+        transform:translate(100px,0px) ;
+      
+    
+    
+    }
+    
+    </style>
+    <br><br><br><br>
+    <p class="formove"></p>
+    
+    <!-- <div class="container-fluid border">
+        <div class="row col-md-3 border">
+            <div class="btn col-6  rounded" style="background-color:white; border:2px solid black; z-index:-1; " >Process</div>
+            <label class="col-6 border" >a</label>
+            <label class="col-6 border" >a</label>
+            <label class="col-6 border" >a</label>
+            <label class="col-6 border" >a</label>
+            <label class="col-6 border" >a</label>
+            
+        </div>
+        <p></p>
+        <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+    
+    
+           
+    </div> -->
+    
+    
+    <div class="container-fluid " style="background-color: green;">
+        <div class="row py-0">
+            <div class="col-md-3   py-0 my-0 px-0 my-0 hihi " style="height:400px; width:400px; z-index:9;   ">
+                <input class="dsadsa rewq" type="button" value="test" style="width: 90px; height:90px;" >
+               
+            </div>
+            <div style="background-color: white; position:absloute; " class="border row col-md-8 adde">
+               
+              
+            </div>
+        </div>    
+    </div>
+    <button class="btn yeah">dfdf</button>
+    <p class="dsw"></p>
+    <script>
+    let asdda=document.querySelector('.dsw');
+    let fdsdf=document.querySelector('.adde');
+    let xs=0;
+    let ys=0;
+    fdsdf.onmousemove=function(e){
+            asdda.innerHTML=`x${ e.pageX} is  y is  ${e.pageY} `;
+        
+                xs=e.pageX;
+                ys=e.pageY;
+            
+            console.log(xs+" "+ys);
+       
+    };
+        
+    
+    let bodyTemps=document.querySelectorAll('.html');
+    let gett =document.querySelector('.dsadsa');
+    let dasad= document.querySelector('.adde');
+    
+        gett.onmouseover=function(){
+            
+        const para = document.createElement("input");
+        para.classList.add('hihihi');
+        para.type='button';
+        para.value='test';
+        tp=para.style.top;
+        lp=para.style.left;
+        const element = document.querySelector('.hihi');
+        element.appendChild(para);
+    
+        let fed =document.querySelector('.hihihi');
+    
+    
+                
+        
+                bodyTemps.forEach((e)=>{
+    
+                   
+                  
+                    fed.onmousedown=function(){
+    
+                      
+    
+                        fed.style.cursor='grabbing';
+                        function track(e) {
+                          
+                            fed.style.transform=`translate(${e.pageX-45}px,${e.pageY-380}px) `;
+                            tp=e.pageY;
+                            lp=e.pageX;
+                            //getNavAtts.style.cursor=' copy';
+                    
+                          }
+                        addEventListener("mousemove", track, false);
+                          };
+                                           
+                    fed.onmouseup=function(){
+                        const para1 = document.createElement("input");
+                        para1.classList.add('hiss');
+                        para1.type='button';
+                        para1.value='test';
+                        para1.style.transform=`translate(${lp-440}px,${tp-380}px) `;
+                        const element1 = document.querySelector('.adde');
+                        element1.appendChild(para1);   
+                        console.log(lp+'  '+ tp);             
+                        fed.remove();
+                                 
+                            };
+          
+                });
+    
+    
+        }
+    
+    
+    
+    
+    
+    
+    
+    let getNavAtts=document.querySelector('.formove');
+    
+    
+     as=0;
+    b=0;
+    getNavAtts.onmousemove=function(){
+        
+        this.onmouseup=function(e){
+           // console.log(e.pageX);
+            as++;
+           
+            if(b==0)
+            {getNavAtts.style.transform=`translate(${e.pageX-100}px,${e.pageY-250}px) `;
+            b++;}
+            
+        }
+    }
+    bodyTemps.forEach(function(e){
+    
+        
+        getNavAtts.onmousedown=function(){
+            function track(e) {
+                if(e.pageX<window.innerWidth && e.pageX>-10 && e.pageY<window.innerHeight && e.pageY>90 && as==0) 
+                getNavAtts.style.transform=`translate(${e.pageX-100}px,${e.pageY-250}px) `;
+                //getNavAtts.style.cursor=' copy';
+            }
+            addEventListener("mousemove", track, false);
+         
+            };
+    
+    });
+    
+    
+    
+    
+    
+    </script>
+
+{% endblock %}

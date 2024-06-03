@@ -1,0 +1,238 @@
+{% extends 'accounts/profile.html' %}
+    {% block profile %}
+
+<a class="border border-dark py-2 px-1 my-2" style="position: absolute;" href="{{ request.META.HTTP_REFERER }}"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+  </svg></a>
+<div class="container my-2 py-2 px-4 rounded border border-dark ch" style="background-color: #2B7A0B;">
+    
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="row justify-content-between">
+          <div class="col-md-5 col-lg-4">
+            <div class="property-price d-flex justify-content-center foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="bi bi-cash">$</span>
+                </div>
+                <div class="card-title-c align-self-center">
+                  <h5 class="title-c">{{pro.price}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="property-summary">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="title-box-d section-t4">
+                    <h3 class="title-d">Quick Summary</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="summary-list">
+                <ul class="list" class="text-white">
+                    <li class="d-flex justify-content-between ">
+                        <strong>Property Title:</strong>
+                        <span style="color: white;">{{pro.title}}</span>
+                      </li>
+                  <li class="d-flex justify-content-between ">
+                    <strong>Property ID:</strong>
+                    <span style="color: white;">{{pro.id}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Property Type:</strong>
+                    <span style="color: white;">{{pro.type}}</span>
+                  </li>
+            
+                  <li class="d-flex justify-content-between">
+                    <strong>Area:</strong>
+                    <span style="color: white;">{{pro.sqft_lot}}sqft
+                    </span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Beds:</strong>
+                    <span style="color: white;">{{pro.bedrooms}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Baths:</strong>
+                    <span style="color: white;">{{pro.bathrooms}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Floors:</strong>
+                    <span style="color: white;">{{pro.floors}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-7 section-md-t3" style="padding: 0px;">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="title-box-d">
+                  <h3 class="title-d">Property Map</h3>
+                </div>
+              </div>
+            </div>
+            <style>
+                #map {
+                    height: 450px;
+                    /* The height is 400 pixels */
+                    width: 100%;
+                    /* The width is the width of the web page */
+                  }
+            </style>
+            <div class="container  rounded" style="border: 1px solid black; background-color: #5BB318;">
+                <div class="row">
+                    <div id="map">
+            
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row" style="padding-top: 0px!important; padding:0px ;">
+              <div class="col-sm-12">
+                <div class="title-box-d">
+                  <h3 class="title-d">House Photo</h3>
+                </div>
+              </div>
+              <img class="" src="{{pro.photo.url}}" height="200" style="width: 300px;" alt="">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="col-md-12">
+        <div class="row section-t3" style="padding-top:0px ;">
+          <div class="col-sm-12">
+            <div class="title-box-d">
+              <h3 class="title-d">Contact Agent</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            
+         
+            {% if ho.userphoto %}
+            <img src="{{ho.userphoto.url}}" alt="" class="img-fluid">
+            {% endif %}
+       
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="property-agent">
+              <h4 class="title-agent">{{ho.user.first_name}} {{ho.user.last_name}}</h4>
+              <p class="color-text-a" style="color: white;">
+                Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+                dui. Quisque velit nisi,
+                pretium ut lacinia in, elementum id enim.
+              </p>
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-between">
+                  <strong>Phone:</strong>
+                  <span style="color: white;" class="color-text-a">(222) 4568932</span>
+                </li>
+                <li class="d-flex justify-content-between">
+                  <strong>Email:</strong>
+                  <span style="color: white;" class="color-text-a">{{ho.user.email}}</span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>AgentName:</strong>
+                    <span style="color: white;" class="color-text-a">{{ho.user.username}}</span>
+                  </li>
+              </ul>
+              <div class="socials-a">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a href="#">
+                      <i class="bi bi-facebook" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#">
+                      <i class="bi bi-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#">
+                      <i class="bi bi-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#">
+                      <i class="bi bi-linkedin" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            {% include 'partion/messages.html' %}
+            <div class="property-contact">
+              <form class="form-a" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-12 mb-1">
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control " id="inputName" placeholder="Name *" required="">
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-1">
+                    <div class="form-group">
+                      <input type="email" name="email" class="form-control" id="inputEmail1" placeholder="Email *" required="">
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-1">
+                    <div class="form-group">
+                      <textarea id="textMessage" name="mess" class="form-control" placeholder="Comment *" cols="45" rows="8" required=""></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12 mt-3">
+                    <button type="submit" class="btn btn-a">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+<script>
+  let resize=document.querySelector('.sidebar');
+  let ch=document.querySelector('.ch');
+  resize.style.height='260%';
+    window.onresize=function(){
+      if(window.innerWidth<700)
+          resize.style.height='fit-content';
+      else  
+          resize.style.height=`${ch.clientHeight+30}px`;
+  }
+</script>
+  <script>
+    function initMap() {
+        const uluru = { lat: {{pro.lat}}, lng:{{pro.long}} };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          minZoom:9,
+          center: uluru,
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+
+        });
+        var z=new google.maps.Marker({position:{lat:parseFloat(`{{pro.lat}}`),lng:parseFloat(`{{pro.long}}`) },map:map});
+        google.maps.event.addListener(z, 'click', function() {
+     
+        });
+   
+       
+
+      }
+   
+window.initMap=initMap
+</script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?&callback=initMap&v=weekly"
+  defer
+></script>
+    {% endblock %}

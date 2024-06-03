@@ -1,0 +1,35 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% block profile %}
+
+
+<div class="container my-3" style="background-color: #5BB318;">
+    <div class="row  rounded d-flex justify-content-center" style="border: black 1px solid;">
+        {% for i in check %}
+        <div class="col-5 mx-1 my-1 rounded" style="text-align: center;border: black 1px solid; background-color: #7DCE13;">
+            <p class="col-12">RequestFrom ::: <span style="font-size: large; color: white;">{{i.rel.username}}</span></p>
+            <p>Type :::   <span style="color:white ;">{{i.type}}</span></p>
+            {% if i.photo %}
+            <img src="{{i.photo.url}}" width="100" alt="">
+            {% endif %}
+            <br>
+            <br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <button name="add" type="submit" value="{{i.id}}"  class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg></button>
+                <button name="del" type="submit" value="{{i.id}}" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg></button>
+                <button class="btn btn-dark my-1"><a href="{% url 'proeritiesPages' pro_id=i.id %}"><svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                  </svg></a></button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

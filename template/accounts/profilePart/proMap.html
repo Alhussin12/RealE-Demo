@@ -1,0 +1,91 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% block profile %}
+
+<style>
+    #map {
+        height: 450px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+</style>
+<div class="container my-3 rounded" style="border: 1px solid black; background-color: #5BB318;">
+    <div class="row">
+        <div id="map">
+        </div>
+    </div>
+    <div class="row mx-3" >
+        <ul class="col-6">
+            <li id="x">lat::</li>
+            <li>NumberOfYourProiortes::{{proUserCount}}</li>
+        </ul>
+        <ul id="y" class="col-6 " >
+            <li>lng::</li>
+        </ul>
+    </div>
+</div>
+<div class="markerInfo rounded" style="visibility: hidden;"></div>
+<script>
+    function initMap() {
+        const uluru = { lat: 47.5112, lng: -122.257 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          minZoom:9,
+          center: uluru,
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+
+        });
+        {% for i in proUser %}
+        
+        var markerInfo =document.querySelector('.markerInfo');
+       
+        var z=new google.maps.Marker({position:{lat:parseFloat(`{{i.lat}}`),lng:parseFloat(`{{i.long}}`) },map:map,title:'{{i.title}}',icon: "{% static 'img/output-onlinepngtools.png' %}"});
+        google.maps.event.addListener(z, 'click', function() {
+            window.location.href = `{% url 'proeritiesPages' pro_id=i.id %}`;
+        });
+        google.maps.event.addListener(z, 'mouseover', function(es) {
+            markerInfo.style.visibility='visible';
+            const e = document.createElement('div');
+            e.innerHTML=
+                `<div class='container '>
+                    <div class='row mt-2'>
+                        {% if i.photo %}
+                        <img class="col-8" src=" {{ i.photo.url }}" style="width:140px;height:70px;"/>
+                        {% endif %}
+                        <div class="col-4">$:{{i.price}}  bd:{{i.bedrooms}}   bt:{{i.bathrooms}}</div>
+                    </div>
+                </div>`;
+            e.style.position='absolute';
+            e.style.zIndex=2;
+            function track(screenLoc) {
+                e.style.top=`${screenLoc.pageY-105}px`;
+                e.style.left=`${screenLoc.pageX-255}px`;
+              }
+              addEventListener("mousemove", track, false);
+           
+            e.style.backgroundColor='#2B7A0B';
+            e.style.border='1px solid black';
+            e.style.borderRadius='10px';
+            e.style.width='250px';
+            e.style.height='110px';
+            
+            markerInfo.appendChild(e);
+        });
+     google.maps.event.addListener(z, 'mouseout', function() {
+            markerInfo.style.visibility='hidden';
+            markerInfo.style.top=`0px`;
+            markerInfo.style.left=`0px`;
+
+        });
+        {% endfor %}
+
+      }
+   
+window.initMap=initMap
+</script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?&callback=initMap&v=weekly"
+  defer
+></script>
+{% endblock %}

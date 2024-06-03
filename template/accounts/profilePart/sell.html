@@ -1,0 +1,154 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% block profile %}
+
+<style>
+    .backGoundSell{
+        background-color: #76b852;
+        color: black;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        
+    }
+
+        .sidebar{
+          height: 130%!important;
+     
+        }
+</style>
+<style>
+    #map {
+        height:300px;
+        /* The height is 400 pixels */
+        width: 50%;
+        /* The width is the width of the web page */
+      }
+</style>
+{%  if request.user.is_authenticated %}
+<form action="" method="get">
+ 
+    <div  class="backGoundSell rounded" >
+        <div class="container rounded " style="background-color:#76b852;">
+
+                <div class="row text-center  mt-1" style="border-bottom:3px solid black;">
+                    <h1 class="m-0">Advance Sell</h1>
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    
+                    <div  class="col-md-4 col-4 col-sm-4">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Type</label>
+                        <select name="type" class="col-md-12 col-12 col-sm-12 py-1 " >
+                            <option value="">choose an option--</option>
+                            <option  value="Rent">ForRent</option>
+                            <option  value="Sell">ForSell</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-4 col-sm-4" >
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Title House</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="title" type="text"  placeholder="<<<<<name>>>>" >
+                    </div>
+                    
+                </div>
+                <div class="row" >
+                    <div class="col-md-4 col-4 col-sm-4" >
+                        <label class="col-md-12  col-12 col-sm-12"  style="font-size:small; padding:0px;margin:0px;" >Your Name</label>
+                        <input class="col-md-12  col-12 col-sm-12" name="username" value="{{user.username}}" type="text"  disabled required>
+                    </div>
+                    <div  class="col-md-4 col-4 col-sm-4">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >floor</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="floor" type="number" min="1" max="10" placeholder="floor">
+                    </div>
+                    <div class="col-md-4 col-4 col-sm-4">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Sold Date</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="date" type="date">
+                    </div>
+
+                </div>
+
+                <div class="row d-flex justify-content-center ">
+                    <div class="col-md-4 col-4 col-sm-4 ">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Number of Beds</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="bed" type="number" min="1" max="10" placeholder="Beds">
+                    </div>
+                    <div class="col-md-4 col-4 col-sm-4">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Number of Baths</label>
+                        <input class=" col-md-12 col-12 col-sm-12" name="bath"  min="1" max="10" type="number" placeholder="Baths">
+                    </div>
+                    <div class="col-md-4 col-4 col-sm-4" >
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;" >Price</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="price" type="number" min="1" max="99999999" placeholder="Price$$" >
+                    </div>
+                </div>
+               
+                <div class="row d-flex justify-content-center" >
+                   
+                    <div class="col-md-4 col-4 col-sm-4">
+                        <label class="col-md-12 col-12 col-sm-12" style="font-size:small; padding:0px;margin:0px;"  >Photo for house</label>
+                        <input class="col-md-12 col-12 col-sm-12" name="photo" type="file" >
+                    </div>
+                </div>
+                <hr class="mx-2">
+                <div class="row d-flex justify-content-center my-2 mx-2 " style="padding-bottom: 0px;">
+                    <label class="col-md-12 col-12 col-sm-12" for="map">Location</label>
+                    <div id="map" class="col-md-12 col-12 col-sm-12" >
+                    </div>  
+                </div>
+                <div class="row  d-flex justify-content-center mb-2" style="padding-top: 0px;">
+                    <input class="col-md-3 col-3 col-sm-4 xlat" name="lat" type="text">
+                    <input class="col-md-3 col-3 col-sm-3 ylng" name="lng" type="text">
+                </div>
+                <div class="row  d-flex justify-content-center" >
+                    <div class="col-md-3 col-sm-3 col-3" >
+                        <input class="col-md-12 col-12 col-sm-12" type="submit" value="Submit">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-3">
+                        <input class="col-md-12 col-12 col-sm-12 " type="Button" value="Clear">
+                    </div>
+                </div>    
+        </div>
+    </div>
+</form>
+
+
+<script>
+    var dateControl = document.querySelector('input[type="date"]');
+    dateControl.value=new Date().toISOString().split("T")[0];
+    dateControl.min=new Date().toISOString().split("T")[0];
+</script>
+<script>
+    function initMap() {
+        const uluru = { lat: 47.5112, lng: -122.257 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          minZoom:9,
+          center: uluru,
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+
+        });
+
+        var markerInfo =document.querySelector('.markerInfo');
+       
+        map.addListener('click',function(e){
+            let xlat = document.querySelector('.xlat');
+            let ylng= document.querySelector('.ylng');
+            xlat.value=e.latLng.lat();
+            ylng.value=e.latLng.lng();
+            var marker =new google.maps.Marker({position:{lat:e.latLng.lat(),lng:e.latLng.lng()},map:map,title:'<h1>hi</h1>',draggable:true});
+            google.maps.event.addListener(marker,'dragend',function(e){
+                xlat.value=e.latLng.lat();
+                ylng.value=e.latLng.lng();
+            }); 
+        });
+
+      }
+   
+window.initMap=initMap
+</script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?&callback=initMap&v=weekly"
+  defer
+></script>
+{%  else %}
+<p>login</p>
+{% endif %}
+{% endblock %}

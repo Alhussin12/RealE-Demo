@@ -1,0 +1,141 @@
+{% extends 'accounts/profile.html' %}
+{% load static %}
+{% block profile %}
+
+<style>
+      #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #customers td, #customers th {
+        border: 1px solid black;
+        padding: 8px;
+      }
+      #customers tr:nth-child(even){background-color: #7DCE13;}
+      #customers tr:nth-child(odd){background-color: #5BB318;      }
+      #customers tr:hover {background-color: #2B7A0B}
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(47, 109, 31);
+        color: rgb(0, 0, 0);
+      }
+</style>
+ 
+ 
+    <!-- if there are no proerities -->
+    {% if  0 == countP %}
+        <div style="width:100% ; height:540px ;  display: flex; align-items: center; justify-content: center; padding-bottom: 100px;">
+            You dont Have Any proerities <a href="{% url 'sellProfile' %}"> <span style="color: white;">Tab</span></a> To Add
+        </div>
+    <!-- if there are proerities -->
+    {% else %}
+        <div class="container-fluid py-3 ch " >
+       
+                <form action=""  method="post" style="position: relative; left: -14px;">
+                    {% csrf_token %}
+                  <button class="btn btn-success 
+                  {%  if 're' not in request.POST  %}
+                  {%  if 'se' not in request.POST  %}
+                  active
+                  {% endif %}
+                  {% endif %}
+                  " type="submit">All</button>
+                  <button class="btn btn-success
+                  {%  if 're' in request.POST %}
+                  active
+                  {% endif %}
+                  " type="submit" name="re" >Rent</button>
+                  <button class="btn btn-success
+                  {%  if 'se' in request.POST %}
+                  active
+                  {% endif %}
+                  " type="submit" name="se" >Sell</button>
+                </form>
+        
+            <div class="row rounded" style="overflow-x: scroll;">
+                <table id="customers" class="col-md-12 col-sm-12 col-12">
+                    <tr>
+                    <th>Photo</th>
+                    <th>Title</th>
+                    <th>Sold_Date</th>
+                    <th>Price</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Floors</th>
+                  
+                    <th>Yr built</th>
+                    <th style="text-align: center;">X</th>
+                    </tr>
+                    {% for i in alls %}
+                    {% if user.username == i.rel.username %}
+                    {% if i.is_check == 1 %}
+                    <tr>
+                    {% if i.photo%}
+                    <td><img src="{{i.photo.url}}" alt="" width="100" height="100"></td>
+                    {% else %}
+                    <td>NoImage</td>   
+                    {% endif %}
+                    <td>{{i.title}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.price}}$</td>
+                    <td>{{i.bedrooms}}</td>
+                    <td>{{i.bathrooms}}</td>
+                    <td>{{i.floors}}</td>
+                   
+                    <td>{{i.yr_built}}</td>
+                    <td>
+                        <div class="input-group d-flex justify-content-center" >
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="deletePro" value="{{i.id}}" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                  </svg>
+                                </button>
+                            </form>
+                            <button class="btn btn-success">
+                                <a href="{% url 'proeritiesPages' pro_id=i.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                      </svg>
+                                 </a>
+                            </button>
+                        </div>
+                    </td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- pagiation -->
+            {% include 'partion/pagiation.html' with page=alls %}
+        </div>
+
+        <!-- for resize sidebar  -->
+        <script>
+            let countP= Math.ceil( parseInt(`{{countP}}`)/8);
+            let resize=document.querySelector('.sidebar');
+            let resizeAll=document.querySelectorAll('.sidebar');
+            let ch=document.querySelector('.ch');
+            let lastpage=document.querySelector('.lastpage');
+           
+            //resize sidebar    
+            resize.style.height=`${ch.clientHeight}px`;
+            resizeAll.forEach(function(e){
+      
+                window.onresize=function(){
+                    if(window.innerWidth<700)
+                        resize.style.height='fit-content';
+                    else  
+                        resize.style.height=`${ch.clientHeight}px`;
+                }
+                
+            });    
+        </script>
+        
+    {% endif %}
+{% endblock %}
+

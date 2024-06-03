@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html > 
+	<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="find your home" />
+        <meta name="author" content="AndaliaRast" />
+
+		{% if  '/' == request.path %}
+		<title>AQAR</title>
+		{% else %}
+		<title>{{request.path}}</title>
+		{% endif %}
+
+		<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- includes Bootstrap-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+		<!-- CSS only -->
+
+		<!-- include ourStyle-->
+		<link href="{% static 'css/our.css' %}"  rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/ourAbout.css' %}">
+		<link rel="stylesheet" href="{% static 'css/registerCss.css' %}">
+		<link rel="stylesheet" href="{% static 'css/profilecss.css' %}">
+		<link rel="stylesheet" href="{% static 'css/editT.css' %}">
+		<!--ourLoading-->
+		<link rel="stylesheet" href="{% static 'css/loadingScreen.css' %}">
+		<!-- ourjquary animation-->
+		<script src="{% static 'js/ourJquary.js' %}"></script>
+
+		<style>
+
+		</style>
+    </head>
+
+    <body onload="function1();" class="html" style=" background-color: #76b852 ; color: black!important;"	>
+		<!-- loading html -->
+		{% include 'partion/loading.html'%}
+		<!-- alert check html -->
+		{% include 'partion/AlertButton.html'%}
+		<!-- header -->
+        {% include 'partion/header.html' %}
+		<br>
+		<br>
+		<br>
+		<!-- Body -->
+        {% block content %}
+        {% endblock %}
+		<!-- footer -->
+        {% include 'partion/footer.html' %}
+
+		
+		<!--bootstrap-->
+		<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<!-- Core theme JS-->
+		<script src="{% static 'js/scripts.js' %}"></script>
+		<!--our js-->
+		<script src="{% static 'js/ourjs.js' %}" ></script>
+		<!-- lodding Watting -->
+		<script>
+			function function1(){
+				let dsas=document.getElementById('as');
+				setTimeout(()=>{dsas.style.visibility='hidden';},1000);           
+		}
+		</script>
+		<!--  Function check -->
+		<script>
+	
+		  let alertButton=document.querySelector('.alertButton');
+		  let okClassA=document.querySelector('.okClass');
+		  let msgAlert =document.querySelector('.msgAlert');
+		  let profile_button=document.querySelector('.profile-button');
+		  let UpdataPhoto=document.querySelector('.UpdataPhoto');
+		  let deleteAccount=document.querySelector('.deleteAccount');
+		  function check(e){
+			document.body.style.overflowY = 'hidden';
+			if('Logout' ==  String(e.getAttribute("data-check-type"))){
+				okClassA.innerHTML=`<a class="okClassHref" href="{% url 'logout' %}" style="color: white!important; width:100% ; height: 100%;">OK</a>`;
+				okClassA.style.color='white';
+				msgAlert.innerHTML=e.getAttribute("data-check-type")+' '+"Are You Sure !!!!!";
+
+					
+			}
+			
+			else if('SaveProfile'== String(e.getAttribute("data-check-type")) ){
+			msgAlert.innerHTML=e.getAttribute("data-check-type")+' '+"Are You Sure !!!!!";
+			okClassA.innerHTML='OK';
+			okClassA.style.color='white';
+				okClassA.onclick=function(){
+					profile_button.setAttribute('type','submit');
+					profile_button.click();
+				}
+			}
+			else if('UpdataPhoto'== String(e.getAttribute("data-check-type")))
+			{
+			msgAlert.innerHTML=e.getAttribute("data-check-type")+' '+"Are You Sure !!!!!";
+			okClassA.innerHTML='OK';
+			okClassA.style.color='white';
+			okClassA.onclick=function(){
+				UpdataPhoto.setAttribute('type','submit');
+				UpdataPhoto.click();
+				}	
+			}
+			else if ('DeleteAccount' == String(e.getAttribute("data-check-type"))){
+				msgAlert.innerHTML=e.getAttribute("data-check-type")+' '+"Are You Sure !!!!!";
+				okClassA.innerHTML='OK';
+				okClassA.style.color='white';
+				okClassA.onclick=function(){
+					e.setAttribute('type','submit');
+					e.click();
+					console.log(deleteAccount.getAttribute("type"));
+					}	
+			}
+			else if ('PasswordChange' == String(e.getAttribute("data-check-type"))){
+				msgAlert.innerHTML=e.getAttribute("data-check-type")+' '+"Are You Sure !!!!!";
+				okClassA.innerHTML='OK';
+				okClassA.style.color='white';
+				okClassA.onclick=function(){
+					e.setAttribute('type','submit');
+					e.click();
+					console.log(deleteAccount.getAttribute("type"));
+					}	
+			}
+			alertButton.style.visibility='visible';
+		  };
+		  function cancel(){
+			document.body.style.overflowY = 'visible';
+			okClassA.innerHTML='OK';
+			alertButton.style.visibility='hidden';
+		  }
+		  
+		</script>
+    </body>
+</html>
+
+

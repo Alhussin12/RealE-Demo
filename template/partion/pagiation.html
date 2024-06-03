@@ -1,0 +1,22 @@
+<!-- pagination the proiortes -->
+<div class=" my-2 d-flex justify-content-center">
+    <span class="">
+
+    {% if page.has_previous %}
+    <a href="?page={{ page.previous_page_number }}"  class="btn btn-secondary" style="background-color:#2f6d1f ;">Previous</a>
+    {% else%}
+    <a href="#"  class="btn btn-secondary bg-secondary disabled">Previous</a>
+    {% endif %}
+
+    <span class="">
+    Page <span class="lastpage">{{ page.number }}</span> of {{ page.paginator.num_pages }}
+    </span>
+
+    {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}"  class="btn btn-secondary  "  style="background-color:#2f6d1f ;">Next</a>
+    {% else %}
+    <a href=""  class="btn btn-secondary bg-secondary disabled">Next</a>
+    {% endif %}
+
+    </span>
+</div>

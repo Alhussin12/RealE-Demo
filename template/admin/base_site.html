@@ -1,0 +1,52 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+
+
+<div id="branding"><a href="{%  url 'index' %}">
+    <svg style="color:darkgreen; font-size:xx-large;" xmlns="http://www.w3.org/2000/svg" style="padding-top: 10px;" width="45" height="35" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+    </svg> 
+    <span  style="color:darkgreen; font-size:xx-large;"> AQAR</span>
+</a> 
+</div>
+{% endblock %}
+{% block extrastyle %}
+
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<style>
+    div[id="user-tools"] a{
+        color: white!important;
+        border-bottom: none!important;
+    }
+    #header{
+        background-color: #212529;
+    }
+    a{
+        color: white!important;
+    }
+    a:hover,div[id="user-tools"] a:hover{
+        color: yellowgreen!important;
+    }
+    .breadcrumbs{
+        background-color: #76b852!important;
+    }
+    table caption,h2{
+        background-color: darkgreen!important;
+    }
+    .default{
+        background-color: rgb(1, 252, 1)!important;
+    }
+    input[name='_addanother'],input[name='_continue']{
+        background-color: rgba(4, 253, 4, 0.747)!important;
+    }
+    table,.module{
+        border: 1px solid black;
+    }
+    .sticky ,.toggle-nav-sidebar{
+        color: darkgreen!important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% for i in all %}
+<button><a href="{% url 'buy_list' tid=i.id %}" >sdsd</a></button>
+{% endfor %}
+<form action="{% url 'list'  %}" method="get" class="bor" >
+    <div class="container-fluid">
+        <div class="row">
+        <input class="col-md-4" type="text" placeholder="hname" name="s_namee">
+        <input class="col-md-4" type="number" placeholder="from$" name="s_frome">
+        <input class="col-md-4" type="number" placeholder="to$" name="s_toe">
+        <input class="col-md-4" type="submit" value="Submit">
+ 
+         </div>
+    </div>
+</form>
+
+<br>
+<br>
+<br>
+<h1 class="text-white">for Rent</h1>
+<div class="container-fluid bg-white">
+{% for pr in prs %}
+{% if 'ForRent' in  pr.properity_type %}
+
+<p>{{prs}}</p>
+
+{% endif %}
+{%  endfor %}
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="row col-md-12">
+        <h1 class="text-center" >Search result</h1>
+    </div>
+    <div class="row">
+    
+        {% for i in all %}
+
+        
+          
+            <p>{{i.namee}}</p>
+    
+           <p>{{i.number}}</p>
+
+        {% endfor %}
+
+
+
+<!--         
+        {% for i in all %}
+
+          {% if  numb == i.number or name == i.namee   %}
+          
+            <p>{{i.namee}}</p>
+        
+            <p>{{i.number}}</p>
+
+            
+          {% endif %}
+        
+        {% endfor %}
+         -->
+    
+
+    </div>
+</div>
+
+
+
+{% endblock %}

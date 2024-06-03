@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="my-form container p-5 rounded border border-dark" style="background-color: #34522480;">
+    <form action="{% url 'list' %}">
+        <h2 class="text-center">Advanced Search</h2>
+        <hr>
+
+        <div class="form-group">
+            <label for="inputSearchProductName">Proiorties Title Contains</label>
+            <input type="text" class="form-control" name="title" id="inputSearchProductName" placeholder="">
+        </div>
+        
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="inputSearchPrice1">Price Between</label>
+                <input type="number" class="form-control" name="mip" id="inputSearchPrice1" placeholder="" value="">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputSearchPrice2">And</label>
+                <input type="number" class="form-control" name="map" id="inputSearchPrice2" placeholder="" value="">
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-4">
+                <label for="inputSearchBedrooms">Bedrooms</label>
+                <input type="number" class="form-control" name="bd" id="inputSearchBedrooms" placeholder="" value="">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputSearchBathrooms">Bathrooms</label>
+                <input type="number" class="form-control" name="br" id="inputSearchBathrooms" placeholder="" value="">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputSearchFloors">Floors</label>
+                <input type="number" class="form-control" name="floor" id="inputSearchFloors" placeholder="" value="">
+            </div>
+
+
+        </div>
+
+
+        <div class="form-group">
+            <div class="pretty p-svg p-curve p-jelly">
+                <div class="state p-warning d-flex justify-content-center">
+                    <button type="submit" name="sbtn" class="btn btn-success mt-2">Search for All</button>
+                </div>
+            </div>
+        </div>
+     
+    </form>
+
+</div>
+
+{% endblock %}

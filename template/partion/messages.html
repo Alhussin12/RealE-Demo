@@ -1,0 +1,49 @@
+    <style>
+      .msgred{
+        background-color: red;
+        text-align: center!important;
+      }
+      .msgblue{
+        background-color: blue;
+        text-align: center!important;
+      }
+      a{
+        color: black!important;
+      }
+    </style>
+
+<div class="hiddenMes">
+{% if messages%}
+    {% for msg in messages %}
+
+      {% if 'danger' in msg.tags %}
+      <div class="row msgred mb-1" id="fordelete">
+           <p class="col-md-11" style="margin-bottom: 0px; padding:0; margin-left: 30px; "><span>Error</span> :: {{msg}}</p>
+        </div>
+      {% endif %}
+
+      {% if 'success' in msg.tags %}
+        <div class="row msgblue mb-1 text-center text-align-center"  style="text-align: center;">
+          <p class="col-md-11" style=" padding: 0; margin-bottom: 0px;  margin-left: 30px;">
+            <span>{{msg.tags|title}}</span> : : {{msg}} 
+          </p>
+        </div>
+      {% endif %}
+      
+      {% if 'info' in msg.tags %}
+      <div class="row msgblue mb-1 "  style="text-align: center; ">
+        <p class="col-md-11" style="padding: 0; margin-bottom: 0;  margin-left: 30px;">
+          <span>Success</span> : : {{msg}} 
+        </p>  
+      </div>
+      {% endif %}
+      
+    {% endfor %}
+{% endif %}   
+</div>
+<script>
+  let hiddenMes =document.querySelector('.hiddenMes');
+  setTimeout(()=>{
+    hiddenMes.style.display='none';
+  }, 5000)
+</script>

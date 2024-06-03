@@ -1,0 +1,133 @@
+{% extends 'accounts/profile.html' %}
+    {% block profile %}
+    <!-- if user login -->
+    {%  if not request.user.is_superuser  %}
+        <div class="container my-3 px-3 rounded" style="background-color:#5BB318 ; border: black 1px solid;">
+            <div class="row ">
+                <div class="col-md-5">
+                    <div class="d-flex flex-column align-items-center text-center  " >
+                        <img class="rounded-circle mt-2"{% if userphoto %} src="{{userphoto.url}}" {% endif %} width="75" height="75"  style="background-color: white; border: white 1px solid;" alt="NoImg" title="UserPhoto" >
+                        <span class="text-black-50" aria-placeholder="Email" >{{username}}</span>
+                        <span>{{fname}} {{lname}}</span>
+                        <span class="text-black-50">{{email}}</span>
+                    </div>
+
+                    <form method = 'POST' class="" enctype="multipart/form-data">
+                        {% csrf_token %}  
+                        <div class="row d-flex flex-column align-items-center text-center">
+                            <label for=""  class="mb-1" style=" border-bottom: solid 2px darkgreen; text-align: left; padding-left: 0px; font-size: large;">UpdatePhoto</label>    
+                            <div>
+                                <input type = "file" name = 'document' class="form-control">
+                            </div>                        
+                        <p><button class="UpdataPhoto btn btn-success mt-1" type = "button" onclick="check(this);" data-check-type="UpdataPhoto" name="uploadbtn" >Update</button></p>
+                        </div>           
+                    </form>
+
+                <form action="" method="post" >
+                    {% csrf_token %}
+                    <div class="row d-flex flex-column align-items-center text-center " >
+                        <div class="rounded "  id="changinfo" style="position:absolute; text-align: left; margin-left: 255px; margin-top: 30px; background-color: #2f6d1f; border: 2px solid black; width: fit-content; height: fit-content; font-size: small; visibility: hidden;">
+                            <ul>
+                                <li>no space or empty value</li>
+                                <li>no empty fileds</li>
+                                <li>the miniume is 8 letters</li>
+                                <li>must have a special characters</li>
+                                <li>you cant enter the same password</li>
+                            </ul>
+                          </div>  
+                        <label for=""  class="" style="border-bottom: solid 2px darkgreen; text-align: left; padding-left: 0px; font-size: large;">
+                            ChangePassword 
+                            <button onmouseover="window.changinfo.style.visibility='visible';" onmouseout="window.changinfo.style.visibility='hidden';" class="btn shadow-none" type="button" style="padding: 0px; margin-bottom: 5px; color: olivedrab;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </button> 
+                        </label>          
+                        <div class="">
+                            <input type="Password" value="{{pass}}" class="form-control my-1 " name="oldpass" placeholder="OldPassword">
+                            <input type="Password" value="" class="rounded my-1 col-md-5 col-5 col-sm-5 py-1 " name="pass1" placeholder="NewPassword">  
+                            <input type="Password" value="" class="rounded mt-1 col-md-5 col-5 col-sm-5  py-1" name="pass2" placeholder="ConfiremPassword">
+                        </div>  
+                            <p><button type = "button" onclick="check(this);" data-check-type="PasswordChange" name="change" name="passwords" class="btn btn btn-success mt-1 ">Change</button></p>
+                    </div>
+                </form>
+                </div>
+                <div class="col-md-7 mt-2">
+                    <div class="" >
+                        {% include 'partion/messages.html' %}
+                        <div class="d-flex justify-content-between align-items-center " style="border-bottom: solid 2px darkgreen;">
+                            <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                <label style="margin-bottom: 0px; font-size: large;">EditProfile</label>
+                            </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">First name</label>
+                                <input type="text" class="form-control" placeholder="First name" name="fname" value="{{fname}}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Last name</label>
+                                <input type="text" class="form-control" name="lname" value="{{lname}}" placeholder="Last name" required>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <label for="">Address1</label>
+                                <input type="text" class="form-control" placeholder="Address1" name="address1" value="{{address1}}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Address2</label>
+                                <input type="text" class="form-control" value="{{address2}}" name="address2" placeholder="Address2">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                            <label for="">City</label>
+                                <input type="text" class="form-control" placeholder="city" name="city" value="{{city}}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Govrment</label>
+                                <input type="text" class="form-control" value="{{state}}" name="state" placeholder="Govrment" required>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <label for="">ZIP</label>
+                                <input type="text" class="form-control" placeholder="1 1 1 1" name="zip" value="{{zip}}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">null</label>
+                                <input type="text" class="form-control"  value="" placeholder=" NuLL">
+                            </div>
+                        </div>
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <button data-check-type="SaveProfile" name="SaveProfile"  onclick="check(this);" class="mt-1 btn btn-success profile-button" type="button">Save Profile</button>
+                        </div>
+                    </div>
+                    </form>
+                    <form action="" method="post">
+                        <div class="row mt-3 mx-1 ">
+                            {% csrf_token %}
+                            <button  class="btn btn-outline-danger deleteAccount" name="deleteAccount" onclick="check(this)"  data-check-type="DeleteAccount" type="button" style="text-align: left;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                                Delete Account
+                            </button>
+                            <button type="button" class="btn btn-outline-success mt-1" style="text-align: left;">ForFutuer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    <!-- Your are an admin -->
+    {% else %}
+        <div style="width:100% ; height:540px ;  display: flex; align-items: center; justify-content: center; padding-bottom: 100px;">
+            You Are An Admin Go to  <a href="http://127.0.0.1:8000/admin/">  <span style="color: white;">ADMIN</span></a> 
+        </div>
+    {%  endif %}
+    {% endblock %}
+

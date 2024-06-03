@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div style="background-color:green ;" class="superCont">
+    <div class="container col-md-8 p-5  cont">
+        {% include 'partion/messages.html' %}
+        <p style="background-color: red; color: black; text-align: center;" id="capslockmsg"></p>
+        <form  action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            
+            <h2 class="text-center">LogIn</h2>
+            <hr>
+
+            <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <input type="text" name="useenames" class="form-control" id="inputUsername" placeholder="" required>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" name="passwords" class="form-control" id="inputPassword" required>
+            </div>
+
+            <div class="form-group">
+                <div class="pretty p-svg p-curve p-jelly">
+                    <input type="checkbox" id="inputTerms" checked name="rememberme" />
+                        <label>Remember Me</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success ">Login</button>
+            </div>
+          
+        </form>
+
+    </div>
+</div>
+{% else %}
+<div style="width:100% ; height:450px ;  display: flex; align-items: center; justify-content: center; padding-bottom: 100px;">
+   Your Already Login Do You Want To  <a href="{% url 'logout' %} " style="color: white; margin-left: 2px;"> Logout</a> 
+</div>
+{% endif %}
+
+<!-- CapsLock Check -->
+<script>
+    let capslockmsg=document.querySelector('#capslockmsg');
+    window.addEventListener("keyup", function(event) {
+
+        // If "caps lock" is pressed, display the warning text
+        if (event.getModifierState("CapsLock")) {
+            capslockmsg.innerHTML='CapsLock Preesed';
+        } else {
+            capslockmsg.innerHTML='';
+        }
+      });
+</script>
+{% endblock %}
+
+<!-- {%if 'register' in request.META.HTTP_REFERER %}
+<p>Sucseec</p>
+{% endif %} -->
+<!-- {% if request.user.is_active and  'Andalia' == user.username and request.user.is_authenticated   %}
+{{request.user }}
+{{user.username}}
+{% endif  %} -->

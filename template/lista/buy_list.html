@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<button class="btn btn-info" ><a href="{% url 'index' %}">
+sds
+</a></button>
+{% for i in all %}
+    {% if i.id == go4.id %}
+    <div class="container">
+        <div class="row">
+            <p class="col">{{go4.number}}</p>
+            <p class="col">{{go4.namee}}</p>
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+    
+
+
+
+
+{% endblock %}
