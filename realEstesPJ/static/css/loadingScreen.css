@@ -1,0 +1,28 @@
+			  .a{
+				  position: fixed;
+				  width: 100%;
+				  height: 120%;
+				  top: -20px;
+				  left: 0px;
+				  display: flex;
+				  justify-content: center;
+				  align-items: center;
+				  background-color: rgba(0, 0, 0, 0.726);
+				  animation-duration: 3s;
+				  animation-iteration-count: infinite;
+				  z-index: 14;
+				 
+		  }
+		  @keyframes example1 {
+				  from {transform: rotate(0deg);}
+				  to {transform: rotate(360deg);}
+		  }
+			  
+		  div .img1{
+				position: initial;
+            
+				animation-name: example1;
+				animation-duration: 1s;
+				animation-iteration-count: 1;
+           
+				}

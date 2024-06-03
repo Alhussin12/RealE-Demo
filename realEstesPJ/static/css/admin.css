@@ -1,0 +1,31 @@
+div[id="user-tools"] a{
+    color: white!important;
+    border-bottom: none!important;
+}
+#header{
+    background-color: #212529;
+}
+a{
+    color: black!important;
+}
+a:hover,div[id="user-tools"] a:hover{
+    color: yellowgreen!important;
+}
+.breadcrumbs{
+    background-color: #76b852!important;
+}
+table caption,h2{
+    background-color: darkgreen!important;
+}
+.default{
+    background-color: rgb(1, 252, 1)!important;
+}
+input[name='_addanother'],input[name='_continue']{
+    background-color: rgba(4, 253, 4, 0.747)!important;
+}
+table,.module{
+    border: 1px solid black;
+}
+.sticky ,.toggle-nav-sidebar{
+    color: darkgreen!important;
+}
